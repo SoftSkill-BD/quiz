@@ -1,4 +1,4 @@
-<ul>
+<ul class="menu">
 	<li><a href="category_list.php">Categoy</a></li>
 	<li><a href="sub_category_list.php">Sub Categoy</a></li>
 	<li><a href="quiz_list.php">Quiz</a></li>

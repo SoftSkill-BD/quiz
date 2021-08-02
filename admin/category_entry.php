@@ -29,6 +29,13 @@
 		</div>
 		<div class="right">
 			<h1> Category Entry</h1>
+			<form action="category_save.php" method="post">
+				<div class="form-group">
+					<label for="name">Category Name</label>
+					<input type="text" id="name" name="name">
+				</div>
+				<input type="submit" name="save" value="Save">
+			</form>
 
 		</div>
 	</section>
