@@ -32,6 +32,40 @@
 			<h1> Category List</h1>
 			<h3> <a href="category_entry.php">New Category</a> </h3>
 
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Category Name</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+						include '../db.php';
+						$query = "select * from Category";
+
+						$result = mysqli_query($conn, $query);
+
+
+						while ($row = mysqli_fetch_assoc($result)) {
+					?>
+						<tr>
+							<td> <?= $row["Name"];  ?> </td>
+							<td>
+								<a href="#">Show</a>
+								<a href="#">Edit</a>
+							</td>
+						</tr>
+
+					<?php
+						}
+
+
+					?>
+				</tbody>
+			</table>
+
 		</div>
 	</section>
 

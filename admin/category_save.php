@@ -1,15 +1,15 @@
 <?php
-	//var_dump($_POST);
-	$conn = mysqli_connect("localhost", "root", "", "softskill");	
+	include '../db.php';
 
-	$query = "insert into Category (Name) values ('" . $_POST["category_name"] . "')";
+	if(isset($_POST['save'])){
+		$name = $_POST['name'];
 
-	mysqli_query($conn, $query);
+		$query = "insert into Category (Name) values ('". $name ."')";
 
-	//PHP: Array, Associative Array
-	//While Loop
+		mysqli_query($conn, $query);
 
-	//$_GET
-	//$_REQUEST
+		header('location:category_list.php');
+	}
+	
 
 ?>
