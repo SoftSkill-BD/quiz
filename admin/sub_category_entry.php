@@ -10,7 +10,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin</title>
+	<title>New Sub Category</title>
+	<?php 
+		include 'includes/_header_assets.php';
+	?>
 </head>
 <body>
 	<section class="top-header">
@@ -25,8 +28,40 @@
 			?>
 		</div>
 		<div class="right">
-			<h1> Sub Category Entry</h1>
-			<h3> <a href="category_entry.php">New Category</a> </h3>
+			<h1>Sub Category Entry</h1>
+			<h3><a href="sub_category_list.php">Sub Category List</a> </h3>
+
+			<!-- HTTP : Hypher Text Transfer Protocol, HTTP Methods: POST, GET, PUT, DELETE -->
+
+			<form action="sub_category_save.php" method="post"> 
+				<div class="form-group">
+					<label for="CategoryId">Category</label>
+					<select name="CategoryId" id="CategoryId">
+						<option></option>
+						<?php 
+							include '../db.php';
+							$query = "select * from Category";
+
+							$result = mysqli_query($conn, $query);
+
+							while ($row = mysqli_fetch_assoc($result)) {
+						?>
+						
+							<option value="<?=$row['id']; ?>"><?= $row["Name"];  ?></option>
+					
+
+						<?php
+							}
+						?>
+										
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="name">Sub Category Name</label>
+					<input type="text" id="name" name="name">
+				</div>
+				<input type="submit" name="save" value="Save">				
+			</form>
 
 		</div>
 	</section>

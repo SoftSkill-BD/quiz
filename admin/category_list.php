@@ -13,7 +13,6 @@
 	<title>Admin</title>
 	<?php 
 		include 'includes/_header_assets.php';
-
 	?>
 </head>
 <body>

@@ -10,7 +10,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin</title>
+	<title>Sub Category List</title>
+	<?php 
+		include 'includes/_header_assets.php';
+	?>
 </head>
 <body>
 	<section class="top-header">
@@ -26,7 +29,41 @@
 		</div>
 		<div class="right">
 			<h1> Sub Category List</h1>
-			<h3> <a href="category_entry.php">New Sub Category</a> </h3>
+			<h3> <a href="sub_category_entry.php">New Sub Category</a> </h3>
+
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Category</th>
+						<th>Sub Category Name</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+						include '../db.php';
+						$query = "select s.Id, c.Name CategoryName, s.Name from SubCategory s inner join Category c on s.CategoryId = c.Id ";
+
+						$result = mysqli_query($conn, $query);
+
+						while($row = mysqli_fetch_assoc($result)){
+					?>
+							<tr>
+								<td><?= $row["CategoryName"]; ?></td>
+								<td><?= $row["Name"]; ?></td>
+								<td>
+									<a href="#">Show</a>
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+
+					<?php
+						}
+
+					?>
+				</tbody>
+			</table>
 
 		</div>
 	</section>
