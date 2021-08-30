@@ -47,7 +47,7 @@
 							while ($row = mysqli_fetch_assoc($result)) {
 						?>
 						
-							<option value="<?=$row['id']; ?>"><?= $row["Name"];  ?></option>
+							<option value="<?=$row['Id']; ?>"><?= $row["Name"];  ?></option>
 					
 
 						<?php
