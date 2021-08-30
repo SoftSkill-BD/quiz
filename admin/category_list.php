@@ -52,8 +52,8 @@
 						<tr>
 							<td> <?= $row["Name"];  ?> </td>
 							<td>
-								<a href="#">Show</a>
-								<a href="#">Edit</a>
+								<a href="category_show.php?id=<?= $row["Id"]; ?>">Show</a>
+								<a href="category_edit.php?id=<?= $row["Id"]; ?>">Edit</a>
 							</td>
 						</tr>
 
