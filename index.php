@@ -2,20 +2,35 @@
 	require_once('db.php');
 
 	if(isset($_POST["checkAnswer"])){
-		$questionId = $_POST["id"];
-		$selectedAnswer = $_POST['answer'];
+		$i = 0;
+		$correctAnswered = 0;
+		$wrongAnswered = 0;
 
-		$query = "select * from Quiz where Id = " . $questionId;
+		while(isset($_POST["id".$i])){
+			$questionId = $_POST["id".$i];
+			$selectedAnswer = $_POST['answer'.$i];
 
-		$result = mysqli_query($conn, $query);
+			$query = "select * from Quiz where Id = " . $questionId;
 
-		$row = mysqli_fetch_assoc($result);	
+			$result = mysqli_query($conn, $query);
 
-		$answerCorrect = false;
+			$row = mysqli_fetch_assoc($result);	
 
-		if($row["CorrectAnswer"] == $selectedAnswer){
-			$answerCorrect = true;
+			
+
+			if($row["CorrectAnswer"] == $selectedAnswer){
+				$correctAnswered++;
+			}else{
+				$wrongAnswered++;
+			}
+
+			$i++;
+			
 		}
+
+		echo("You have answered correctly for " . $correctAnswered . " questions and given wrong answer for ". $wrongAnswered . " questions. Percentage of correct answer: ". ($correctAnswered /($correctAnswered + $wrongAnswered) * 100));
+
+		
 	}
 ?>
 
@@ -38,30 +53,27 @@
 	<div class="content">
 		<form action="" method="post">
 			<?php
-				$query = "select * from Quiz limit 1";
+				$query = "select * from Quiz";
 
 				$result = mysqli_query($conn, $query);
 
-				$row = mysqli_fetch_assoc($result);				
+				$i = 0;
+				while($row = mysqli_fetch_assoc($result)){		
 			?>
 
-			<input type="hidden" name="id" value="<?= $row["Id"];   ?>"/>
-			<h4> <?= $row["Question"] ?></h4>
-			<input type="radio" name="answer" value="A">  <?=  $row["AnswerOne"] ?> <br/> <br/>
-			<input type="radio" name="answer" value="B">  <?=  $row["AnswerTwo"] ?> <br/> <br/>
-			<input type="radio" name="answer" value="C">  <?=  $row["AnswerThree"] ?> <br/> <br/>
-			<input type="radio" name="answer" value="D">  <?=  $row["AnswerFour"] ?> <br/> <br/>
-			<input type="submit" name="checkAnswer" value="Submit Answer"/> 
+				<input type="hidden" name="id<?=$i?>" value="<?= $row["Id"];   ?>"/>
+				<h4> <?= $row["Question"] ?></h4>
+				<input type="radio" name="answer<?=$i?>" value="A">  <?=  $row["AnswerOne"] ?> <br/> <br/>
+				<input type="radio" name="answer<?=$i?>" value="B">  <?=  $row["AnswerTwo"] ?> <br/> <br/>
+				<input type="radio" name="answer<?=$i?>" value="C">  <?=  $row["AnswerThree"] ?> <br/> <br/>
+				<input type="radio" name="answer<?=$i?>" value="D">  <?=  $row["AnswerFour"] ?> <br/> <br/>
+			
 			<br/>
 			<?php 
-				if(isset($answerCorrect)){
-					if($answerCorrect == true){
-						echo "Congratulations. Your answer is correct.";
-					}else{
-						echo "Sorry, wrong answer. Please try again.";
-					}
+				$i++;
 				}
 			?>
+			<input type="submit" name="checkAnswer" value="Submit Answer"/> 
 		</form>
 	</div>
 	<div class="footer">
