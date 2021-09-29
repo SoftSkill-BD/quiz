@@ -49,6 +49,11 @@
 <body>
 	<div class="header">
 		<h1>Quiz | Test Your Knowledge</h1>
+		<p>
+			<a href="registration.php">Register</a>
+			||
+			<a href="login.php">Login</a>
+		</p>
 	</div>
 	<div class="content">
 		<form action="" method="post">
